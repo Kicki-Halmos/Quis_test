@@ -31,7 +31,6 @@ class QuizList {
         }
     ]*/
         this.list = [];  
-        let currentQuestion = 0;
         
 
     }
@@ -43,15 +42,9 @@ class QuizList {
         this.list = [];     //tömmer this.list
         
     }
+    
 
-    setNextQuestion(){
-        this.updateQuiz(this.list[currentQuestion]);
-
-        currentQuestion++;
-
-    }
-
-    updateQuiz(question) {   //metod för att skriva ut frågor och svar som finns i this.list
+    updateQuiz() {   //metod för att skriva ut frågor och svar som finns i this.list
         
         let div = document.getElementById("quiz");
         div.innerHTML = "";
