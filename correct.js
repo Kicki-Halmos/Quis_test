@@ -36,10 +36,10 @@ class Correct {
                 if (event.target.checked) {   //kollar om checkboxen är iklickad eller inte
                     current_question_checked.push(event.target.id);  //om den är icheckad så ska den pushas in i current_question_checked
                 } else {
-                    current_question_checked.splice(0, 1, );  //om man ångrar sig och checkar ur sin checkbox så ska den raderas
+                    current_question_checked.splice(0, 1, );  //om man ångrar sig och checkar ur sin checkbox så ska den raderas - detta fungerar ej som det ska!!!
                 }
             }
-
+            console.log(current_question_checked);
             array_to_checkedArray.splice(0, 1, current_question_checked);  //raderar värdet i array_to_checkedArray och ersätter det med nytt värde från current_question_checked
             console.log(array_to_checkedArray);                                                               
         });
