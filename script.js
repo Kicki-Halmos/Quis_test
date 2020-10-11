@@ -8,35 +8,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let div_input = document.getElementById("input");
     let btnCorrect = document.getElementById("btnCorrect"); //knapp för att rätta quiz
     let btnNext = document.getElementById("btnNext"); // knapp för att trycka fram en fråga i taget
-    let select = document.getElementById("select");
-    /*   fetch("https://quizapi.io/api/v1/questions?apiKey=GNvppRgmDcLZEoI0NZxmrPhuP0hjrzbICmWeZGve&category=code&difficulty=Easy&limit=10&tags=JavaScript")
-           .then(response => response.json())
-           .then(data => {
-               for (let i = 0; i < 10; i++) {
-
-                   let answers_and_correct = [{
-                           answer: data[i].answers.answer_a,
-                           correct: data[i].correct_answers.answer_a_correct
-                       },
-                       {
-                           answer: data[i].answers.answer_b,
-                           correct: data[i].correct_answers.answer_b_correct
-                       },
-                       {
-                           answer: data[i].answers.answer_c,
-                           correct: data[i].correct_answers.answer_c_correct
-                       },
-                       {
-                           answer: data[i].answers.answer_d,
-                           correct: data[i].correct_answers.answer_d_correct
-                       }
-                   ];
-
-                   let new_quiz = new Quiz(data[i].question, answers_and_correct);
-                   quizList.addToList(new_quiz); // pushar in frågor och svar i en array i klassen Quizlist och klassen Correct
-                   correct.addToList(new_quiz);
-               }*/
-
+   
+    
 
     btnSubmit.addEventListener("click", async function (event) { //eventlyssnare som lägger till användarnamn 
 
@@ -47,34 +20,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 
     btnQuiz.addEventListener("click", async function (e) {
-        quizList.correct.emptyList();
-        
-      
-        quizList.emptyList();
+        quizList.correct.emptyList();  
+        quizList.emptyList();               // tömmer listor i klassen correct och quizlist
         correct.emptyList();
        
-        console.log(quizList.list);
-       
-       
-        let select = document.getElementById("select");
-        
-
+        let select = document.getElementById("select");    //selectruta för att välja hur många frågor (5-10)
+    
         for (let i = 0; i < select.options.length; i++) {
 
-            let opt = select.options[i];
+            let opt = select.options[i];   
            
-            if (opt.selected) {
-
-              
-                
+            if (opt.selected) {    // kollar vilket val som gjorts och hämtar så många frågor som valts från quizapi
 
                await fetch("https://quizapi.io/api/v1/questions?apiKey=GNvppRgmDcLZEoI0NZxmrPhuP0hjrzbICmWeZGve&category=code&difficulty=Easy&limit=10&tags=JavaScript")
                     .then (response => response.json())
                     .then(data => { 
                             for (let j = 0; j < i + 5; j++) {
-                                //console.log("hej");
-
-                                let answers_and_correct = [
+                                
+                                let answers_and_correct = [       // object med svar och rätta svar
                                     {
                                         answer: data[j].answers.answer_a,
                                         correct: data[j].correct_answers.answer_a_correct
@@ -93,79 +56,40 @@ document.addEventListener("DOMContentLoaded", function (e) {
                                     }
                                 ];
                                
-                                let new_quiz = new Quiz(data[j].question, answers_and_correct);
-                                quizList.addToList(new_quiz); // pushar in frågor och svar i en array i klassen Quizlist och klassen Correct
+                                let new_quiz = new Quiz(data[j].question, answers_and_correct);  //sparar frågor, svar och rätta svar i variabeln new_quiz
+                                quizList.addToList(new_quiz);   // pushar in frågor och svar i en array i klassen Quizlist och klassen Correct
                                 correct.addToList(new_quiz);
-                                console.log(quizList.list);
-                                console.log(correct.list);
                                 
                             }
-                          
 
                         });
                     
             }
         }
-        console.log(quizList.list);
-        console.log(correct.list);
-        btnNext.value = quizList.list.length; 
+   
+        btnNext.value = quizList.list.length;   // sätter värdet på bntNext till så många frågor som valts
         btnQuiz.classList.add("hide");
         select.classList.add("hide");
         btnNext.classList.remove("hide");
         
-        quizList.setNextQuestion();
+        quizList.setNextQuestion();     // kallar på en funktion som ska visa nästa fråga
     });
 
     btnNext.addEventListener("click", function (event) {
 
-        // hämtar nytt quiz från quizapi
-        //sparar frågor, svar och rätta svar i variabeln new_quiz
-
-
         btnQuiz.classList.add("hide");
 
-       quizList.setNextQuestion(); // skriver ut frågor + svar
-
-
-        
-
-
-        /* let checkbox = document.getElementById("checkbox_1");
-         console.log(checkbox);
-
-         if (checkbox.checked){
-             console.log("checked");
-         }*/
-
+       quizList.setNextQuestion(); //kallar på en funktions om ska visa nästa fråga
 
     });
 
-
-
-
-
-//console.log("hallå vad händer?");
-//console.log(checkedArray);
-
-
-/*for (i = 0; i < 10; i++) {
-
-
-}*/
-
 btnCorrect.addEventListener("click", function (e) { //eventlyssnare som triggar funktion som rättar quiz
 
-    let checkedArray = quizList.correct.checkedArray;
-    correct.addToCheckedList(checkedArray);
+    let checkedArray = quizList.correct.checkedArray;  //hämtar checkedArray från objektet quizList.correct
+    correct.addToCheckedList(checkedArray);             // pushar in den checkedArray till klassen Correct
     correct.compareChecked_Correct();
    
 
 });
-
-//btnNext.classList.add("hide");
-
-
-
-//console.log(quizList.correct.checkedArray);
 
 });
