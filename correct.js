@@ -39,6 +39,7 @@ class Correct {
 
     emptyList() {
         this.list = [];
+        this.checkedArray = [];
     }
 
     addToList(new_quiz) {
@@ -48,7 +49,7 @@ class Correct {
     addToCheckedList(checkbox) {
 
         this.checkedArray.push(checkbox);
-        //console.log(this.checkedArray);
+        console.log(this.checkedArray);
 
         
 
@@ -100,7 +101,7 @@ class Correct {
         btnQuiz.classList.remove("hide");
         select.classList.remove("hide")
 
-
+       
 
 
     }
@@ -109,11 +110,10 @@ class Correct {
 
 
         // metod för att räkna ut poäng
+        console.log(this.checkedArray);
         let checkedArray = this.checkedArray[0][0];
         console.log(checkedArray);
-        //checkedArray[0][0].sort();
-        //console.log(checkedArray[0][0]);
-        //console.log("sorterad " + checkedArray[0]);
+        
 
 
         //console.log(checkedArray);
@@ -149,14 +149,9 @@ class Correct {
                     }
 
                     id_nr++;
-                    //let checkbox = checkedArray.includes("checkbox_");
-                    //if (checkbox){
-                    //document.getElementById("ckeckbox_" + id_nr)
-                    // console.log("true");  //letar reda på checkbox som är kopplat till den specifika frågan vi är på i loopen
-                    /*if (checkbox.checked) {                                    // pushar in den i checkedArray om den är icheckad
-                        checkedArray.push(checkbox);
-
-                    }*/
+                      //letar reda på checkbox som är kopplat till den specifika frågan vi är på i loopen
+                                                      // pushar in den i checkedArray om den är icheckad
+                   
 
                 }
             }

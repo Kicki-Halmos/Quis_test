@@ -95,11 +95,15 @@ class QuizList {
 
                 emptyList() {
                     this.list = []; //tömmer this.list
+                    this.number = 1;
+                    this.id_nr = 1;
+                    this.currentQuestion = 0;
 
                 }
 
                 setNextQuestion() {
                     this.updateQuiz(this.list[this.currentQuestion]);
+                    
 
                     this.currentQuestion++;
 
@@ -133,7 +137,7 @@ class QuizList {
                     //loopar igenom varje index i this.list
 
                     let h = document.createElement("h4");
-                    h.textContent = "Fråga: " + this.number + "/" + this.list.length + " " + question.question; //tar fram och skriver ut frågor från varje index
+                    h.textContent = "Fråga " + this.number + "/" + this.list.length + ": " + question.question; //tar fram och skriver ut frågor från varje index
                     div.appendChild(h);
 
                     let p_a = document.createElement("p");
@@ -183,5 +187,5 @@ class QuizList {
 
 
                 }
-
+                
             }

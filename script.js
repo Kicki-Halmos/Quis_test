@@ -47,8 +47,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 
     btnQuiz.addEventListener("click", async function (e) {
-       
+        quizList.correct.emptyList();
         
+      
+        quizList.emptyList();
+        correct.emptyList();
+       
+        console.log(quizList.list);
+       
+       
         let select = document.getElementById("select");
         
 
@@ -58,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
            
             if (opt.selected) {
 
+              
                 
 
                await fetch("https://quizapi.io/api/v1/questions?apiKey=GNvppRgmDcLZEoI0NZxmrPhuP0hjrzbICmWeZGve&category=code&difficulty=Easy&limit=10&tags=JavaScript")
@@ -88,14 +96,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
                                 let new_quiz = new Quiz(data[j].question, answers_and_correct);
                                 quizList.addToList(new_quiz); // pushar in frågor och svar i en array i klassen Quizlist och klassen Correct
                                 correct.addToList(new_quiz);
-                                //console.log(quizList.list);
+                                console.log(quizList.list);
+                                console.log(correct.list);
+                                
                             }
-                            
+                          
 
                         });
                     
             }
         }
+        console.log(quizList.list);
+        console.log(correct.list);
         btnNext.value = quizList.list.length; 
         btnQuiz.classList.add("hide");
         select.classList.add("hide");
@@ -131,16 +143,23 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 
-let checkedArray = quizList.correct.checkedArray;
-correct.addToCheckedList(checkedArray);
 
-for (i = 0; i < 10; i++) {
+//console.log("hallå vad händer?");
+//console.log(checkedArray);
 
 
-}
+/*for (i = 0; i < 10; i++) {
+
+
+}*/
 
 btnCorrect.addEventListener("click", function (e) { //eventlyssnare som triggar funktion som rättar quiz
-correct.compareChecked_Correct();
+
+    let checkedArray = quizList.correct.checkedArray;
+    correct.addToCheckedList(checkedArray);
+    correct.compareChecked_Correct();
+   
+
 });
 
 //btnNext.classList.add("hide");
