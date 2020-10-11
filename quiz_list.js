@@ -103,15 +103,15 @@ class QuizList {
 
                     this.currentQuestion++;
 
-                    this.correct.keepCheckedCheckboxes();
+                   this.correct.keepCheckedCheckboxes();
 
                     let btnNext = document.getElementById("btnNext")
                    
-                    console.log("hej "+btnNext.value)
+                    //console.log("hej "+btnNext.value)
                     
                     if (btnNext.value > 0 ) {
                         btnNext.value--;
-                        console.log("ho " + btnNext.value);
+                        //console.log("ho " + btnNext.value);
                     }
                     if (btnNext.value == 0) {
                         btnNext.classList.add("hide");
@@ -141,11 +141,12 @@ class QuizList {
                     div.appendChild(p_a);
 
                     question.answers.forEach(answer => {
+                        let no = 1;
                         let checkbox = document.createElement("input");
                         checkbox.setAttribute("type", "checkbox");
 
                         checkbox.setAttribute("class", "checkbox");
-                        //checkbox.setAttribute("name", "answer");
+                        checkbox.setAttribute("name", "checkbox_" + no);
 
                         let answer_printout = document.createElement("span");
                         answer_printout.textContent = answer.answer; //tar fram svar
@@ -154,6 +155,7 @@ class QuizList {
                             div.appendChild(checkbox);
                             div.appendChild(answer_printout);
                             this.id_nr++; // plussar på id_nr 
+                            no++;
                         }
 
                         let br = document.createElement("br");

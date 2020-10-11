@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     .then (response => response.json())
                     .then(data => { 
                             for (let j = 0; j < i + 5; j++) {
-                                console.log("hej");
+                                //console.log("hej");
 
                                 let answers_and_correct = [
                                     {
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         btnQuiz.classList.add("hide");
 
-        quizList.setNextQuestion(); // skriver ut frågor + svar
+       quizList.setNextQuestion(); // skriver ut frågor + svar
 
 
         
