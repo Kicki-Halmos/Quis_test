@@ -24,7 +24,7 @@ class Correct {
 
 
     keepCheckedCheckboxes() {
-        let self = this;
+        
         let div = document.getElementById("quiz");
         let current_question_checked = []; //array som håller icheckade checkboxar per fråga
         let array_to_checkedArray = []; //array som tar emot icheckade checkboxar och skickar de vidare
@@ -39,19 +39,19 @@ class Correct {
                     current_question_checked.splice(0, 1, ); //om man ångrar sig och checkar ur sin checkbox så ska den raderas - detta fungerar ej som det ska!!!
                 }
             }
-            console.log(current_question_checked);
+            
             array_to_checkedArray.splice(0, 1, current_question_checked); //raderar värdet i array_to_checkedArray och ersätter det med nytt värde från current_question_checked
-            console.log(array_to_checkedArray);
+            
         });
 
         this.addToCheckedList(array_to_checkedArray); //skickar vidare värdet till addToCheckedList();
-        console.log(array_to_checkedArray);
+       
     }
 
 
     printResult(result) { // metod för att skriva ut poängresultatet (result)
         let div_quiz = document.getElementById("quiz");
-        //let div_result = document.createElement("div");
+        
         let p_result = document.createElement("h4");
         let user_name = document.getElementById("name").value;
         let btnCorrect = document.getElementById("btnCorrect");
@@ -72,10 +72,10 @@ class Correct {
     compareChecked_Correct() { // metod för att räkna ut poäng
 
         let checkedArray = this.checkedArray[0][0]; //hämtar icheckade checkboxar
-        console.log(checkedArray[0]);
+       
         let result = 0;
         let id_nr = 1; //används för att leta efter checkboxarnas idn
-        //let checked = 0;
+        
 
 
         for (let question of this.list) { //loopar igenom alla frågor i this.list
