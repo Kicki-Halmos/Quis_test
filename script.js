@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function (e) {
+ document.addEventListener("DOMContentLoaded", function (e) {
     let quizList = new QuizList();
     let correct = new Correct();
 
