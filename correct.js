@@ -1,13 +1,13 @@
 class Correct {
     constructor() {
 
-        this.list = [];  //lista med alla frågor, svar och rätta svar
-        this.checkedArray = [];  //lista med alla icheckade checkboxar
-        
+        this.list = []; //lista med alla frågor, svar och rätta svar
+        this.checkedArray = []; //lista med alla icheckade checkboxar
+
     }
 
     emptyList() {
-        this.list = [];         // nollställer listor
+        this.list = []; // nollställer listor
         this.checkedArray = [];
     }
 
@@ -17,7 +17,7 @@ class Correct {
 
     addToCheckedList(checkbox) {
 
-        this.checkedArray.push(checkbox);  //pushar in alla icheckade checkboxar i checkedArray
+        this.checkedArray.push(checkbox); //pushar in alla icheckade checkboxar i checkedArray
         console.log(this.checkedArray)
 
     }
@@ -26,22 +26,22 @@ class Correct {
     keepCheckedCheckboxes() {
         let self = this;
         let div = document.getElementById("quiz");
-        let current_question_checked = [];  //array som håller icheckade checkboxar per fråga
-        let array_to_checkedArray = [];  //array som tar emot icheckade checkboxar och skickar de vidare
+        let current_question_checked = []; //array som håller icheckade checkboxar per fråga
+        let array_to_checkedArray = []; //array som tar emot icheckade checkboxar och skickar de vidare
 
 
         div.addEventListener("click", function (event) {
 
-            if (event.target.tagName == "INPUT") {   //säkerställer att det som klickas är en checkbox
-                if (event.target.checked) {   //kollar om checkboxen är iklickad eller inte
-                    current_question_checked.push(event.target.id);  //om den är icheckad så ska den pushas in i current_question_checked
+            if (event.target.tagName == "INPUT") { //säkerställer att det som klickas är en checkbox
+                if (event.target.checked) { //kollar om checkboxen är iklickad eller inte
+                    current_question_checked.push(event.target.id); //om den är icheckad så ska den pushas in i current_question_checked
                 } else {
-                    current_question_checked.splice(0, 1, );  //om man ångrar sig och checkar ur sin checkbox så ska den raderas - detta fungerar ej som det ska!!!
+                    current_question_checked.splice(0, 1, ); //om man ångrar sig och checkar ur sin checkbox så ska den raderas - detta fungerar ej som det ska!!!
                 }
             }
             console.log(current_question_checked);
-            array_to_checkedArray.splice(0, 1, current_question_checked);  //raderar värdet i array_to_checkedArray och ersätter det med nytt värde från current_question_checked
-            console.log(array_to_checkedArray);                                                               
+            array_to_checkedArray.splice(0, 1, current_question_checked); //raderar värdet i array_to_checkedArray och ersätter det med nytt värde från current_question_checked
+            console.log(array_to_checkedArray);
         });
 
         this.addToCheckedList(array_to_checkedArray); //skickar vidare värdet till addToCheckedList();
@@ -69,14 +69,14 @@ class Correct {
 
 
     }
-    compareChecked_Correct() {   // metod för att räkna ut poäng
+    compareChecked_Correct() { // metod för att räkna ut poäng
 
-        let checkedArray = this.checkedArray[0][0];  //hämtar icheckade checkboxar
+        let checkedArray = this.checkedArray[0][0]; //hämtar icheckade checkboxar
         console.log(checkedArray[0]);
         let result = 0;
-        let id_nr = 1;  //används för att leta efter checkboxarnas idn
+        let id_nr = 1; //används för att leta efter checkboxarnas idn
         //let checked = 0;
-       
+
 
         for (let question of this.list) { //loopar igenom alla frågor i this.list
             let correct = []; // en array som ska fyllas med svar och rätt svar "true" eller "false" per fråga
@@ -87,23 +87,23 @@ class Correct {
 
 
                 let current_answers = { // skapar ett objekt med id och rätt svar "true" eller "false"
-                    id: "checkbox_" + id_nr,  // sätter egenskapen id till värde som ska matcha checkboxarnas id
+                    id: "checkbox_" + id_nr, // sätter egenskapen id till värde som ska matcha checkboxarnas id
                     correct: answer.correct
                 }
 
-                answer = answer.answer; 
-                if (answer != null) {   // säkerställer att vi inte får med några svar som är = null
+                answer = answer.answer;
+                if (answer != null) { // säkerställer att vi inte får med några svar som är = null
 
-                    correct.push(current_answers);  // pushar in objektet current_answers i correct arrayen
-                    checked = checkedArray[0].includes("checkbox_" + id_nr);  //testar ifall det finns en checkbox med det id vi är på nu i checkedArray
+                    correct.push(current_answers); // pushar in objektet current_answers i correct arrayen
+                    checked = checkedArray[0].includes("checkbox_" + id_nr); //testar ifall det finns en checkbox med det id vi är på nu i checkedArray
 
                     if (checked) {
-                        checked_per_question.push("checkbox_" + id_nr);  //pushar in checkbox + id till checked_per_question
-                        
+                        checked_per_question.push("checkbox_" + id_nr); //pushar in checkbox + id till checked_per_question
+
                     }
 
                     id_nr++;
-                
+
                 }
             }
 
